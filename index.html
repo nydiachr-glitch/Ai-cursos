@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lumia Data Consulting — Inteligencia Artificial · Analítica · Transformación Digital</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+:root {
+  --midnight:       #1A2238;
+  --midnight-deep:  #121828;
+  --midnight-mid:   #1F2B44;
+  --midnight-lift:  #2A3659;
+  --champagne:      #DBA39A;
+  --champagne-pale: #EDD0CB;
+  --champagne-dim:  rgba(219,163,154,0.12);
+  --champagne-glow: rgba(219,163,154,0.06);
+  --pearl:          #F9F7F7;
+  --pearl-dim:      rgba(249,247,247,0.55);
+  --pearl-ghost:    rgba(249,247,247,0.08);
+  --carbon:         #3E4149;
+  --carbon-light:   #5A5F6E;
+  --sage:           #7BADA0;
+  --sage-dim:       rgba(123,173,160,0.12);
+  --border:         rgba(219,163,154,0.18);
+  --border-pearl:   rgba(249,247,247,0.07);
+  --radius:         6px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--midnight-deep);
+  color: var(--pearl);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+
+/* ── TYPE ─────────────────────────────────────── */
+.display {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  font-weight: 500;
+  opacity: 0.85;
+  display: block;
+}
+
+/* ── LAYOUT ───────────────────────────────────── */
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
+.wrap-narrow { max-width: 780px; margin: 0 auto; padding: 0 40px; }
+
+hr.rule {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--champagne) 30%, var(--champagne) 70%, transparent 100%);
+  opacity: 0.25;
+  margin: 0;
+}
+
+/* ── NAV ──────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(18,24,40,0.9);
+  border-bottom: 1px solid var(--border-pearl);
+}
+.nav-wrap {
+  max-width: 1140px; margin: 0 auto; padding: 0 40px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+}
+.logo {
+  display: flex; align-items: baseline; gap: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 500;
+  color: var(--pearl); white-space: nowrap;
+}
+.logo-lumia { color: var(--pearl); }
+.logo-data  { color: var(--champagne); }
+.logo-dot   { color: var(--champagne); font-size: 28px; line-height: 0; margin-bottom: -4px; }
+.nav-links {
+  display: flex; align-items: center; gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 400;
+  color: var(--pearl-dim);
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--pearl); }
+.nav-cta {
+  background: var(--champagne);
+  color: var(--midnight-deep) !important;
+  font-weight: 500; font-size: 13px;
+  padding: 10px 24px; border-radius: var(--radius);
+  letter-spacing: 0.04em;
+  transition: background 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--champagne-pale); box-shadow: 0 4px 20px rgba(219,163,154,0.3); }
+
+/* ── HERO ─────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 0;
+  align-items: center;
+  padding-top: 68px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 55% 60% at 90% 30%, rgba(219,163,154,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 45% at 5% 70%, rgba(123,173,160,0.06) 0%, transparent 55%),
+    linear-gradient(150deg, #121828 0%, #1A2238 55%, #1E2C48 100%);
+  z-index: 0;
+}
+.hero-grid-lines {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(var(--border-pearl) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-pearl) 1px, transparent 1px);
+  background-size: 100px 100px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+.hero-left {
+  position: relative; z-index: 2;
+  padding: 100px 60px 100px 0;
+}
+.hero-eyebrow-row {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 40px;
+}
+.hero-eyebrow-line { width: 48px; height: 1px; background: var(--champagne); opacity: 0.5; }
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(52px, 5.5vw, 80px);
+  line-height: 1.02;
+  color: var(--pearl);
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
+.hero-title strong {
+  font-weight: 500;
+  color: var(--champagne);
+  font-style: italic;
+}
+.hero-lead {
+  font-size: 18px;
+  color: var(--pearl-dim);
+  line-height: 1.75;
+  max-width: 520px;
+  margin-bottom: 52px;
+  font-weight: 300;
+}
+.hero-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--champagne);
+  color: var(--midnight-deep);
+  font-size: 14px; font-weight: 500;
+  padding: 15px 36px; border-radius: var(--radius);
+  letter-spacing: 0.04em;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--champagne-pale);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(219,163,154,0.28);
+}
+.btn-ghost {
+  font-size: 14px; color: var(--pearl-dim);
+  border-bottom: 1px solid rgba(249,247,247,0.18);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: 0.02em;
+}
+.btn-ghost:hover { color: var(--pearl); border-color: var(--champagne); }
+
+.hero-right {
+  position: relative; z-index: 2;
+  height: 100%;
+  display: flex; align-items: center;
+  border-left: 1px solid var(--border-pearl);
+}
+.hero-stats-panel {
+  width: 100%;
+  padding: 60px 48px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.hero-stat {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border-pearl);
+}
+.hero-stat:last-child { border-bottom: none; }
+.hero-stat-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 400;
+  color: var(--champagne);
+  line-height: 1;
+  display: block;
+}
+.hero-stat-label {
+  font-size: 13px; color: var(--pearl-dim);
+  margin-top: 6px; display: block;
+  letter-spacing: 0.03em;
+}
+
+/* ── SERVICES ─────────────────────────────────── */
+.services { padding: 120px 0; }
+.services-header { margin-bottom: 72px; }
+.services-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 400; color: var(--pearl);
+  margin-top: 14px; line-height: 1.1;
+}
+.services-header h2 em { font-style: italic; color: var(--champagne); }
+.services-header p {
+  font-size: 17px; color: var(--pearl-dim);
+  margin-top: 18px; max-width: 560px;
+  line-height: 1.75; font-weight: 300;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--border-pearl);
+  border: 1px solid var(--border-pearl);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.service-card {
+  background: var(--midnight);
+  padding: 48px 40px;
+  transition: background 0.25s;
+  cursor: default;
+}
+.service-card:hover { background: var(--midnight-mid); }
+.service-card.featured {
+  background: var(--midnight-mid);
+  border-bottom: 2px solid var(--champagne);
+}
+.service-icon {
+  width: 48px; height: 48px;
+  border-radius: 8px;
+  background: var(--champagne-dim);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; margin-bottom: 24px;
+}
+.service-icon.sage { background: var(--sage-dim); }
+.service-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 500;
+  color: var(--pearl); margin-bottom: 12px;
+  line-height: 1.25;
+}
+.service-card p {
+  font-size: 14px; color: var(--pearl-dim);
+  line-height: 1.75;
+}
+.service-list {
+  list-style: none; margin-top: 20px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.service-list li {
+  font-size: 13px; color: var(--pearl-dim);
+  display: flex; gap: 10px; align-items: flex-start; line-height: 1.5;
+}
+.service-list li::before {
+  content: '—';
+  color: var(--champagne); opacity: 0.5;
+  flex-shrink: 0; margin-top: 1px;
+}
+.service-badge {
+  display: inline-block; margin-top: 20px;
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 999px;
+  background: var(--champagne-dim); color: var(--champagne);
+  border: 1px solid var(--border);
+}
+
+/* ── COURSES SECTION ──────────────────────────── */
+.courses-section {
+  padding: 0 0 120px;
+}
+.courses-header { margin-bottom: 64px; }
+.courses-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 4vw, 58px);
+  font-weight: 400; color: var(--pearl);
+  margin-top: 14px; line-height: 1.1;
+}
+.courses-header h2 em { font-style: italic; color: var(--champagne); }
+.courses-header p {
+  font-size: 17px; color: var(--pearl-dim);
+  margin-top: 18px; font-weight: 300; line-height: 1.75;
+}
+
+/* Featured course card */
+.course-featured {
+  background: linear-gradient(135deg, var(--midnight-mid) 0%, var(--midnight-lift) 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+}
+.course-featured-left { padding: 56px 56px; }
+.course-featured-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--champagne); margin-bottom: 24px;
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--champagne);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+.course-featured h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 400; color: var(--pearl);
+  line-height: 1.15; margin-bottom: 8px;
+}
+.course-featured h3 em { font-style: italic; color: var(--champagne); }
+.course-featured-sub {
+  font-size: 16px; color: var(--pearl-dim);
+  font-style: italic; margin-bottom: 32px;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+}
+.course-featured p {
+  font-size: 15px; color: var(--pearl-dim);
+  line-height: 1.8; margin-bottom: 36px;
+  font-weight: 300;
+}
+.course-pills {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px;
+}
+.course-pill {
+  font-size: 12px; padding: 6px 14px; border-radius: 999px;
+  display: flex; align-items: center; gap: 6px;
+}
+.pill-champagne { background: var(--champagne-dim); color: var(--champagne); border: 1px solid var(--border); }
+.pill-sage { background: var(--sage-dim); color: var(--sage); border: 1px solid rgba(123,173,160,0.2); }
+.course-featured-cta {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.btn-course {
+  background: var(--champagne);
+  color: var(--midnight-deep);
+  font-size: 14px; font-weight: 500;
+  padding: 14px 32px; border-radius: var(--radius);
+  letter-spacing: 0.04em;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-course:hover {
+  background: var(--champagne-pale);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(219,163,154,0.28);
+}
+.btn-course-ghost {
+  font-size: 14px; color: var(--pearl-dim);
+  border-bottom: 1px solid rgba(249,247,247,0.18);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.btn-course-ghost:hover { color: var(--pearl); border-color: var(--champagne); }
+
+.course-featured-right {
+  background: rgba(0,0,0,0.2);
+  border-left: 1px solid var(--border-pearl);
+  padding: 56px 44px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.course-detail-label {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--champagne); opacity: 0.65;
+  display: block; margin-bottom: 6px;
+}
+.course-detail-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; color: var(--pearl);
+  display: block; line-height: 1.2;
+}
+.course-detail-sub {
+  font-size: 12px; color: var(--pearl-dim);
+  margin-top: 2px; display: block;
+}
+.course-detail-item { margin-bottom: 28px; }
+.course-detail-item:last-child { margin-bottom: 0; }
+.course-detail-divider {
+  height: 1px; background: var(--border-pearl); margin: 28px 0;
+}
+.course-includes {
+  margin-top: auto;
+}
+.course-includes-label {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--pearl-dim); opacity: 0.5;
+  margin-bottom: 12px; display: block;
+}
+.course-includes ul {
+  list-style: none; display: flex; flex-direction: column; gap: 8px;
+}
+.course-includes ul li {
+  font-size: 13px; color: var(--pearl-dim);
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.course-includes ul li::before {
+  content: '✓';
+  color: var(--champagne); font-size: 11px; font-weight: 500;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+/* Future courses grid */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.course-card {
+  border: 1px solid var(--border-pearl);
+  border-radius: 10px;
+  padding: 36px 32px;
+  background: var(--midnight);
+  transition: border-color 0.2s, background 0.2s;
+}
+.course-card:hover { border-color: var(--border); background: var(--midnight-mid); }
+.course-card-eyebrow {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--champagne); opacity: 0.6;
+  margin-bottom: 14px; display: block;
+}
+.course-card h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; color: var(--pearl);
+  line-height: 1.25; margin-bottom: 10px;
+}
+.course-card p {
+  font-size: 13px; color: var(--pearl-dim);
+  line-height: 1.7;
+}
+.course-card-footer {
+  margin-top: 24px; padding-top: 20px;
+  border-top: 1px solid var(--border-pearl);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.course-card-duration { font-size: 12px; color: var(--pearl-dim); }
+.course-card-link {
+  font-size: 12px; color: var(--champagne); opacity: 0.7;
+  letter-spacing: 0.06em;
+  transition: opacity 0.2s;
+}
+.course-card:hover .course-card-link { opacity: 1; }
+.coming-soon {
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--pearl-dim); opacity: 0.4;
+  border: 1px solid var(--border-pearl);
+  padding: 3px 10px; border-radius: 999px;
+}
+
+/* ── APPROACH ─────────────────────────────────── */
+.approach-section {
+  background: linear-gradient(135deg, var(--midnight-mid) 0%, var(--midnight) 100%);
+  border-top: 1px solid var(--border-pearl);
+  border-bottom: 1px solid var(--border-pearl);
+  padding: 120px 0;
+}
+.approach-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 100px;
+  align-items: start;
+}
+.approach-left h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 3.8vw, 52px);
+  font-weight: 400; color: var(--pearl);
+  line-height: 1.1; margin-top: 14px;
+}
+.approach-left h2 em { font-style: italic; color: var(--champagne); }
+.approach-left p {
+  font-size: 16px; color: var(--pearl-dim);
+  line-height: 1.8; margin-top: 24px; font-weight: 300;
+}
+.approach-right { display: flex; flex-direction: column; gap: 0; }
+.approach-item {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border-pearl);
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.approach-item:first-child { padding-top: 0; }
+.approach-item:last-child { border-bottom: none; padding-bottom: 0; }
+.approach-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300;
+  color: var(--champagne); opacity: 0.4;
+  line-height: 1; padding-top: 4px;
+}
+.approach-item h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 500; color: var(--pearl);
+  margin-bottom: 8px; line-height: 1.2;
+}
+.approach-item p {
+  font-size: 14px; color: var(--pearl-dim); line-height: 1.75;
+}
+
+/* ── SECTORS ──────────────────────────────────── */
+.sectors-section { padding: 120px 0; }
+.sectors-header { margin-bottom: 60px; }
+.sectors-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 3.8vw, 52px);
+  font-weight: 400; color: var(--pearl);
+  margin-top: 14px; line-height: 1.1;
+}
+.sectors-list {
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.sector-tag {
+  font-size: 14px; font-weight: 300;
+  color: var(--pearl-dim);
+  border: 1px solid var(--border-pearl);
+  padding: 12px 24px; border-radius: 999px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  cursor: default;
+}
+.sector-tag:hover {
+  border-color: var(--border);
+  color: var(--pearl);
+  background: var(--champagne-glow);
+}
+
+/* ── SPEAKER ──────────────────────────────────── */
+.speaker-section {
+  background: var(--midnight-mid);
+  border-top: 1px solid var(--border-pearl);
+  border-bottom: 1px solid var(--border-pearl);
+  padding: 120px 0;
+}
+.speaker-grid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 80px; align-items: start;
+}
+.speaker-portrait {
+  aspect-ratio: 3/4;
+  border-radius: 10px;
+  background: linear-gradient(145deg, var(--midnight-lift), var(--midnight));
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.speaker-portrait::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 40% 30%, rgba(219,163,154,0.15), transparent 60%);
+}
+.speaker-monogram {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px; font-weight: 300;
+  color: var(--champagne); opacity: 0.35;
+  z-index: 1;
+}
+.speaker-info { }
+.speaker-info .eyebrow { margin-bottom: 16px; }
+.speaker-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 400; color: var(--pearl);
+  line-height: 1.1; margin-bottom: 6px;
+}
+.speaker-title {
+  font-size: 15px; color: var(--champagne); opacity: 0.75;
+  margin-bottom: 32px; line-height: 1.5; font-weight: 300;
+}
+.speaker-bio p {
+  font-size: 15px; color: var(--pearl-dim);
+  line-height: 1.85; margin-bottom: 18px; font-weight: 300;
+}
+.speaker-bio p:last-child { margin-bottom: 0; }
+.speaker-certs {
+  display: flex; flex-wrap: wrap; gap: 10px; margin: 32px 0;
+}
+.cert {
+  font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 4px;
+  background: var(--champagne-dim); color: var(--champagne);
+  border: 1px solid var(--border);
+}
+.speaker-stats {
+  display: flex; gap: 48px; flex-wrap: wrap;
+  padding-top: 36px; border-top: 1px solid var(--border-pearl);
+}
+.stat-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 44px; font-weight: 300;
+  color: var(--champagne); line-height: 1; display: block;
+}
+.stat-label {
+  font-size: 12px; color: var(--pearl-dim);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-top: 6px; display: block;
+}
+
+/* ── CTA BAND ─────────────────────────────────── */
+.cta-band {
+  padding: 100px 0;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-band-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(219,163,154,0.07) 0%, transparent 65%);
+}
+.cta-band h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 400; color: var(--pearl);
+  line-height: 1.1; margin-bottom: 20px;
+  position: relative; z-index: 1;
+}
+.cta-band h2 em { font-style: italic; color: var(--champagne); }
+.cta-band p {
+  font-size: 17px; color: var(--pearl-dim);
+  max-width: 520px; margin: 0 auto 52px;
+  line-height: 1.75; font-weight: 300;
+  position: relative; z-index: 1;
+}
+.contact-row {
+  display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+  position: relative; z-index: 1;
+}
+.contact-btn {
+  display: flex; align-items: center; gap: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px 28px;
+  background: rgba(255,255,255,0.03);
+  min-width: 280px;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+.contact-btn:hover {
+  border-color: var(--champagne);
+  background: var(--champagne-dim);
+  transform: translateY(-2px);
+}
+.contact-btn-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
+}
+.icon-wa   { background: rgba(37,211,102,0.12); }
+.icon-mail { background: var(--champagne-dim); }
+.contact-btn-body { text-align: left; }
+.contact-btn-label {
+  font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--champagne); opacity: 0.7;
+  display: block; margin-bottom: 3px;
+}
+.contact-btn-value { font-size: 15px; color: var(--pearl); font-weight: 500; display: block; }
+.contact-btn-sub   { font-size: 12px; color: var(--pearl-dim); display: block; margin-top: 1px; }
+
+/* ── FOOTER ───────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border-pearl);
+  padding: 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 20px;
+  max-width: 1140px; margin: 0 auto;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; color: var(--pearl); opacity: 0.5;
+}
+.footer-logo span { color: var(--champagne); }
+.footer-links {
+  display: flex; gap: 32px; list-style: none;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 12px; color: var(--pearl-dim); opacity: 0.5;
+  transition: opacity 0.2s; letter-spacing: 0.04em;
+}
+.footer-links a:hover { opacity: 1; }
+.footer-copy {
+  font-size: 12px; color: var(--pearl-dim); opacity: 0.35;
+  letter-spacing: 0.04em; width: 100%;
+}
+
+/* ── RESPONSIVE ───────────────────────────────── */
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 80px 0; }
+  .services-grid { grid-template-columns: 1fr; }
+  .course-featured { grid-template-columns: 1fr; }
+  .course-featured-right { border-left: none; border-top: 1px solid var(--border-pearl); }
+  .courses-grid { grid-template-columns: 1fr; }
+  .approach-grid { grid-template-columns: 1fr; gap: 48px; }
+  .speaker-grid { grid-template-columns: 1fr; gap: 48px; }
+  .speaker-portrait { aspect-ratio: 16/9; }
+  .contact-btn { min-width: unset; flex: 1; }
+}
+@media (max-width: 640px) {
+  .wrap, .wrap-narrow { padding: 0 20px; }
+  .nav-wrap { padding: 0 20px; }
+  .nav-links { display: none; }
+  footer { flex-direction: column; text-align: center; padding: 32px 20px; }
+  .footer-links { justify-content: center; }
+  .hero-title { font-size: 42px; }
+  .contact-row { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────── -->
+<nav>
+  <div class="nav-wrap">
+    <a href="#" class="logo">
+      <span class="logo-lumia">Lumia</span><span class="logo-data">Data</span><span class="logo-dot">.</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-left wrap" style="padding-right:60px;">
+    <div class="hero-eyebrow-row">
+      <div class="hero-eyebrow-line"></div>
+      <span class="eyebrow">Consultoría · Capacitación · Transformación Digital</span>
+    </div>
+    <h1 class="hero-title">
+      Inteligencia<br>que genera<br><strong>resultados.</strong>
+    </h1>
+    <p class="hero-lead">
+      Acompañamos a organizaciones y líderes en la adopción estratégica de Inteligencia Artificial y Analítica de Datos — con enfoque práctico, orientado a resultados y sin tecnicismos innecesarios.
+    </p>
+    <div class="hero-actions">
+      <a href="#cursos" class="btn-primary">Ver cursos de IA →</a>
+      <a href="#servicios" class="btn-ghost">Nuestros servicios</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-stats-panel">
+      <div class="hero-stat">
+        <span class="hero-stat-val">15+</span>
+        <span class="hero-stat-label">Años de experiencia liderando iniciativas tecnológicas</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">7</span>
+        <span class="hero-stat-label">Sectores de industria: banca, seguros, retail, gobierno y más</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">100%</span>
+        <span class="hero-stat-label">Enfoque práctico — resultados aplicables desde el primer día</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ── SERVICES ─────────────────────────────────────────── -->
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="services-header">
+      <span class="eyebrow">Nuestros servicios</span>
+      <h2>Lo que hacemos<br>para tu <em>organización.</em></h2>
+      <p>Desde la estrategia hasta la implementación, acompañamos a empresas y líderes en cada etapa de su transformación digital.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-card featured" id="cursos-ia">
+        <div class="service-icon">🎓</div>
+        <h3>Cursos y Talleres de IA</h3>
+        <p>Programas de capacitación diseñados para profesionales, equipos directivos y líderes empresariales. Aprendizaje práctico con herramientas reales desde el primer día.</p>
+        <ul class="service-list">
+          <li>Talleres ejecutivos de IA aplicada</li>
+          <li>Programas para equipos de trabajo</li>
+          <li>Capacitación en herramientas gratuitas</li>
+          <li>Formatos presenciales y remotos</li>
+        </ul>
+        <span class="service-badge">Ver cursos ↓</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon sage">🔍</div>
+        <h3>Consultoría en IA y Datos</h3>
+        <p>Identificamos oportunidades de aplicación de Inteligencia Artificial en tu operación y diseñamos estrategias que generan valor real de negocio.</p>
+        <ul class="service-list">
+          <li>Diagnóstico de madurez en datos e IA</li>
+          <li>Diseño de estrategia de datos</li>
+          <li>Identificación de casos de uso de IA</li>
+          <li>Hoja de ruta de transformación digital</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon sage">⚙️</div>
+        <h3>Transformación Digital</h3>
+        <p>Acompañamos el proceso de cambio organizacional, desarrollamos capacidades internas y apoyamos la implementación de tecnologías que generan ventaja competitiva.</p>
+        <ul class="service-list">
+          <li>Desarrollo de capacidades internas</li>
+          <li>Gestión del cambio tecnológico</li>
+          <li>Implementación de soluciones de datos</li>
+          <li>Aseguramiento de la calidad digital</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ── COURSES ───────────────────────────────────────────── -->
+<section class="courses-section" id="cursos">
+  <div class="wrap">
+    <div class="courses-header">
+      <span class="eyebrow">Cursos de Inteligencia Artificial</span>
+      <h2>Aprende a usar IA<br><em>de verdad.</em></h2>
+      <p>Programas diseñados para que puedas aplicar lo aprendido desde el mismo día del taller. Sin teoría innecesaria, sin tecnicismos — con resultados concretos.</p>
+    </div>
+
+    <!-- FEATURED COURSE -->
+    <div class="course-featured">
+      <div class="course-featured-left">
+        <div class="course-featured-tag">
+          <div class="live-dot"></div>
+          Próxima fecha · 24 de Julio 2025
+        </div>
+        <h3>La ventaja que<br>pocos tienen:<br><em>El asesor secreto de IA</em></h3>
+        <p class="course-featured-sub">que nadie sabe que usas.</p>
+        <p>Taller ejecutivo diseñado para perfiles directivos y líderes de negocio. En 4 horas dominarás las herramientas de IA más efectivas del momento — para juntas, presentaciones, comunicación y toma de decisiones — sin cursos convencionales y sin perder el tiempo.</p>
+        <div class="course-pills">
+          <span class="course-pill pill-champagne">🎙️ Fathom</span>
+          <span class="course-pill pill-champagne">📊 Gamma</span>
+          <span class="course-pill pill-champagne">💬 ChatGPT</span>
+          <span class="course-pill pill-champagne">✨ Claude</span>
+          <span class="course-pill pill-sage">100% Gratuito usar</span>
+          <span class="course-pill pill-sage">Grupos ≤ 12 personas</span>
+        </div>
+        <div class="course-featured-cta">
+          <a href="landing_taller_ia.html" class="btn-course">Ver todos los detalles →</a>
+          <a href="#contacto" class="btn-course-ghost">Reservar lugar</a>
+        </div>
+      </div>
+
+      <div class="course-featured-right">
+        <div>
+          <div class="course-detail-item">
+            <span class="course-detail-label">Fecha</span>
+            <span class="course-detail-val">24 de Julio</span>
+            <span class="course-detail-sub">10:00 am — 2:00 pm</span>
+          </div>
+          <div class="course-detail-item">
+            <span class="course-detail-label">Lugar</span>
+            <span class="course-detail-val">Polanco</span>
+            <span class="course-detail-sub">Ciudad de México</span>
+          </div>
+          <div class="course-detail-item">
+            <span class="course-detail-label">Inversión</span>
+            <span class="course-detail-val">$2,500</span>
+            <span class="course-detail-sub">MXN · todo incluido</span>
+          </div>
+          <div class="course-detail-item">
+            <span class="course-detail-label">Modalidad</span>
+            <span class="course-detail-val">Presencial</span>
+            <span class="course-detail-sub">Edición privada · máx. 12 personas</span>
+          </div>
+        </div>
+        <div class="course-detail-divider"></div>
+        <div class="course-includes">
+          <span class="course-includes-label">Incluye</span>
+          <ul>
+            <li>Guía de prompts ejecutivos (PDF)</li>
+            <li>Práctica en vivo con casos reales</li>
+            <li>Grupo de seguimiento opcional</li>
+            <li>Herramientas 100% gratuitas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPCOMING COURSES -->
+    <div class="courses-grid">
+      <div class="course-card">
+        <span class="course-card-eyebrow">Próximamente</span>
+        <h4>IA para Equipos de Trabajo</h4>
+        <p>Programa diseñado para equipos operativos y mandos medios que quieren incorporar IA en sus procesos cotidianos y aumentar su productividad.</p>
+        <div class="course-card-footer">
+          <span class="course-card-duration">8 horas · Presencial o remoto</span>
+          <span class="coming-soon">Pronto</span>
+        </div>
+      </div>
+      <div class="course-card">
+        <span class="course-card-eyebrow">Próximamente</span>
+        <h4>Analítica de Datos sin Código</h4>
+        <p>Aprende a leer, interpretar y presentar datos de tu negocio usando herramientas accesibles. Toma mejores decisiones basadas en evidencia.</p>
+        <div class="course-card-footer">
+          <span class="course-card-duration">6 horas · Taller intensivo</span>
+          <span class="coming-soon">Pronto</span>
+        </div>
+      </div>
+      <div class="course-card">
+        <span class="course-card-eyebrow">Próximamente</span>
+        <h4>El Abogado de Bolsillo</h4>
+        <p>Entiende contratos, pólizas de seguro y términos bancarios en 2 minutos y con palabras simples, usando Claude como tu asistente legal personal.</p>
+        <div class="course-card-footer">
+          <span class="course-card-duration">4 horas · Ejecutivo</span>
+          <span class="coming-soon">Pronto</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ── APPROACH ──────────────────────────────────────────── -->
+<section class="approach-section" id="nosotros">
+  <div class="wrap">
+    <div class="approach-grid">
+      <div class="approach-left">
+        <span class="eyebrow">Nuestro enfoque</span>
+        <h2>Práctica.<br>Resultados.<br><em>Sin excusas.</em></h2>
+        <p>No creemos en la capacitación que termina en el salón de clases. Cada programa está diseñado para que el conocimiento se aplique desde el primer día — con herramientas reales, casos propios y acompañamiento post-taller.</p>
+      </div>
+      <div class="approach-right">
+        <div class="approach-item">
+          <div class="approach-num">1</div>
+          <div>
+            <h4>Diagnóstico del punto de partida</h4>
+            <p>Antes de cualquier programa, entendemos dónde está tu equipo u organización y qué necesita realmente. No hay soluciones genéricas.</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">2</div>
+          <div>
+            <h4>Diseño orientado al resultado</h4>
+            <p>Cada taller o consultoría se estructura alrededor de un resultado concreto y medible — no alrededor de los temas que se quieren "cubrir".</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">3</div>
+          <div>
+            <h4>Práctica con casos propios</h4>
+            <p>Los ejercicios usan situaciones reales de los participantes. El aprendizaje es inmediato porque se aplica a lo que ya viven y conocen.</p>
+          </div>
+        </div>
+        <div class="approach-item">
+          <div class="approach-num">4</div>
+          <div>
+            <h4>Acompañamiento post-taller</h4>
+            <p>El trabajo no termina al salir del salón. Ofrecemos seguimiento para asegurar que lo aprendido se integre de forma sostenida.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTORS ───────────────────────────────────────────── -->
+<section class="sectors-section">
+  <div class="wrap">
+    <div class="sectors-header">
+      <span class="eyebrow">Industrias</span>
+      <h2>Experiencia en los sectores<br>que mueven a México.</h2>
+    </div>
+    <div class="sectors-list">
+      <span class="sector-tag">Banca y Servicios Financieros</span>
+      <span class="sector-tag">Seguros</span>
+      <span class="sector-tag">Retail y Comercio</span>
+      <span class="sector-tag">Gobierno</span>
+      <span class="sector-tag">Logística y Transporte</span>
+      <span class="sector-tag">Salud</span>
+      <span class="sector-tag">Manufactura</span>
+      <span class="sector-tag">Tecnología</span>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ── SPEAKER / ABOUT ───────────────────────────────────── -->
+<section class="speaker-section">
+  <div class="wrap">
+    <div class="speaker-grid">
+      <div class="speaker-portrait">
+        <span class="speaker-monogram">NC</span>
+      </div>
+      <div class="speaker-info">
+        <span class="eyebrow">Quien lidera Lumia Data</span>
+        <h2 class="speaker-name">Nydia Chávez</h2>
+        <p class="speaker-title">Especialista en Inteligencia Artificial · Analítica de Datos · Transformación Digital</p>
+        <div class="speaker-bio">
+          <p>Certificada en Inteligencia Artificial y Aseguramiento de la Calidad, con más de 15 años de experiencia liderando iniciativas tecnológicas y de mejora continua en sectores como banca, seguros, retail, gobierno, logística y transporte.</p>
+          <p>Ha diseñado e impartido programas de capacitación para profesionales, equipos de trabajo y líderes empresariales, facilitando la comprensión y adopción de tecnologías emergentes con un enfoque práctico y orientado a resultados.</p>
+          <p>Como consultora, acompaña a las organizaciones en la identificación de oportunidades de aplicación de IA, el desarrollo de capacidades internas y la implementación de estrategias que generan valor de negocio a través de los datos y la innovación tecnológica.</p>
+        </div>
+        <div class="speaker-certs">
+          <span class="cert">IA Certificada</span>
+          <span class="cert">QA Certificada</span>
+          <span class="cert">+15 años de experiencia</span>
+        </div>
+        <div class="speaker-stats">
+          <div>
+            <span class="stat-val">15+</span>
+            <span class="stat-label">Años de experiencia</span>
+          </div>
+          <div>
+            <span class="stat-val">7+</span>
+            <span class="stat-label">Sectores atendidos</span>
+          </div>
+          <div>
+            <span class="stat-val">2</span>
+            <span class="stat-label">Certificaciones clave</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ─────────────────────────────────────────── -->
+<section class="cta-band" id="contacto">
+  <div class="cta-band-bg"></div>
+  <div class="wrap-narrow" style="text-align:center;">
+    <span class="eyebrow" style="margin-bottom:20px;">Contacto</span>
+    <h2>¿Listo para dar<br>el primer <em>paso?</em></h2>
+    <p>Ya sea que quieras reservar tu lugar en el próximo taller, explorar un programa a medida para tu equipo, o conocer más sobre nuestros servicios de consultoría — escríbenos.</p>
+    <div class="contact-row">
+      <a href="https://wa.me/5215579893658" target="_blank" class="contact-btn">
+        <div class="contact-btn-icon icon-wa">💬</div>
+        <div class="contact-btn-body">
+          <span class="contact-btn-label">WhatsApp</span>
+          <span class="contact-btn-value">55 7989 3658</span>
+          <span class="contact-btn-sub">Respuesta en menos de 24 hrs</span>
+        </div>
+      </a>
+      <a href="mailto:nydia.chavez@lumiadata.consulting" class="contact-btn">
+        <div class="contact-btn-icon icon-mail">✉️</div>
+        <div class="contact-btn-body">
+          <span class="contact-btn-label">Correo</span>
+          <span class="contact-btn-value">nydia.chavez</span>
+          <span class="contact-btn-sub">@lumiadata.consulting</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">Lumia<span>Data</span> Consulting</div>
+  <ul class="footer-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#cursos">Cursos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="landing_taller_ia.html">Taller Ejecutivo →</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 Lumia Data Consulting · nydia.chavez@lumiadata.consulting · Ciudad de México</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>La ventaja que pocos tienen — Taller Ejecutivo de IA · 24 de Julio · Polanco CDMX</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --midnight: #1A2238;
+    --midnight-mid: #202840;
+    --midnight-light: #2A3454;
+    --champagne: #DBA39A;
+    --champagne-light: #E8C4BE;
+    --champagne-dim: rgba(219,163,154,0.15);
+    --pearl: #f9f7f7;
+    --carbon: #3E4149;
+    --carbon-light: #5A5F6E;
+    --white: #ffffff;
+    --border: rgba(219,163,154,0.2);
+    --border-pearl: rgba(249,247,247,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--midnight);
+    color: var(--pearl);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── UTILITIES ─────────────────────────────────────────────────── */
+  .serif { font-family: 'Playfair Display', Georgia, serif; }
+  .champagne { color: var(--champagne); }
+  .pearl { color: var(--pearl); }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--champagne) 30%, var(--champagne) 70%, transparent);
+    opacity: 0.4;
+    border: none;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    font-weight: 500;
+    opacity: 0.85;
+  }
+
+  /* ── NAV ────────────────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    background: rgba(26,34,56,0.88);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 32px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--pearl);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--champagne); }
+  .nav-cta {
+    background: var(--champagne);
+    color: var(--midnight);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--champagne-light); transform: translateY(-1px); }
+
+  /* ── HERO ───────────────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 0 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(219,163,154,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(219,163,154,0.05) 0%, transparent 60%),
+      linear-gradient(160deg, #1A2238 0%, #202840 50%, #1E2A44 100%);
+  }
+
+  /* decorative grid lines */
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(249,247,247,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(249,247,247,0.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 36px;
+  }
+  .hero-eyebrow .line {
+    width: 40px;
+    height: 1px;
+    background: var(--champagne);
+    opacity: 0.6;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(44px, 6vw, 72px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+    color: var(--pearl);
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--champagne);
+  }
+
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(17px, 2.2vw, 22px);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(249,247,247,0.5);
+    margin-bottom: 52px;
+    line-height: 1.5;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 0;
+    flex-wrap: wrap;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 640px;
+    margin-bottom: 44px;
+    background: rgba(255,255,255,0.03);
+  }
+  .hero-meta-item {
+    flex: 1;
+    min-width: 130px;
+    padding: 20px 24px;
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .hero-meta-item:last-child { border-right: none; }
+  .hero-meta-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    opacity: 0.7;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .hero-meta-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--pearl);
+    line-height: 1.2;
+  }
+  .hero-meta-sub {
+    font-size: 12px;
+    color: rgba(249, 247, 247, 0.674);
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--champagne);
+    color: var(--midnight);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 16px 36px;
+    border-radius: 4px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: var(--champagne-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(219,163,154,0.25);
+  }
+  .btn-ghost {
+    font-size: 14px;
+    color: rgba(249,247,247,0.55);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(249,247,247,0.2);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--pearl); border-color: var(--champagne); }
+
+  /* ── SECTION BASE ───────────────────────────────────────────────── */
+  section { padding: 100px 0; }
+  section + section { padding-top: 0; }
+
+  .section-header {
+    margin-bottom: 60px;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--pearl);
+    margin-top: 12px;
+  }
+  .section-header p {
+    font-size: 17px;
+    color: rgba(249,247,247,0.55);
+    margin-top: 16px;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ── TENSION SECTION ────────────────────────────────────────────── */
+  .tension {
+    background: linear-gradient(135deg, #202840 0%, #1A2238 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 0;
+  }
+  .tension-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .tension-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--pearl);
+  }
+  .tension-quote em { color: var(--champagne); font-style: normal; }
+  .tension-body p {
+    font-size: 16px;
+    color: rgba(249,247,247,0.6);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .tension-body p:last-child { margin-bottom: 0; }
+  .tension-body strong { color: var(--pearl); font-weight: 500; }
+
+  /* ── OUTCOMES ───────────────────────────────────────────────────── */
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .outcome-card {
+    background: var(--midnight);
+    padding: 40px;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .outcome-card:hover { background: var(--midnight-mid); }
+  .outcome-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    background: var(--champagne-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .outcome-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--pearl);
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+  .outcome-card p {
+    font-size: 14px;
+    color: rgba(249,247,247,0.5);
+    line-height: 1.7;
+  }
+  .outcome-tool {
+    margin-top: 16px;
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    opacity: 0.7;
+  }
+
+  /* ── AGENDA ─────────────────────────────────────────────────────── */
+  .agenda-bg { background: var(--midnight-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .agenda-list { display: flex; flex-direction: column; gap: 0; }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 80px 24px 1fr;
+    gap: 0 24px;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(249,247,247,0.06);
+    align-items: start;
+  }
+  .agenda-item:last-child { border-bottom: none; }
+  .agenda-time {
+    font-size: 12px;
+    color: rgba(249,247,247,0.35);
+    text-align: right;
+    padding-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .agenda-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6px;
+  }
+  .agenda-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--champagne);
+    flex-shrink: 0;
+  }
+  .agenda-dot.optional { background: transparent; border: 1px solid var(--champagne); opacity: 0.5; }
+  .agenda-dot.close { background: rgba(249,247,247,0.2); }
+  .agenda-connector {
+    width: 1px;
+    flex: 1;
+    min-height: 24px;
+    background: rgba(219,163,154,0.15);
+    margin-top: 4px;
+  }
+  .agenda-body {}
+  .agenda-tag {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .tag-ai { background: rgba(219,163,154,0.12); color: var(--champagne); }
+  .tag-fathom { background: rgba(95,188,162,0.1); color: #5FBCA2; }
+  .tag-gamma { background: rgba(234,179,80,0.1); color: #EAB350; }
+  .tag-comm { background: rgba(232,128,100,0.1); color: #E88064; }
+  .tag-opt { background: rgba(150,200,120,0.1); color: #96C878; }
+  .tag-close { background: rgba(249,247,247,0.07); color: rgba(249,247,247,0.4); }
+  .tag-break { background: rgba(249,247,247,0.05); color: rgba(249,247,247,0.3); }
+  .agenda-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--pearl);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .agenda-body p {
+    font-size: 14px;
+    color: rgba(249,247,247,0.5);
+    line-height: 1.65;
+  }
+
+  /* ── FOR WHOM ───────────────────────────────────────────────────── */
+  .for-whom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .for-whom-col { }
+  .for-whom-label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .label-yes { color: #5FBCA2; }
+  .label-no  { color: rgba(249, 247, 247, 0.595); }
+  .check-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-bottom: 18px;
+  }
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-icon.yes { background: rgba(95,188,162,0.15); color: #5FBCA2; }
+  .check-icon.no  { background: rgba(249,247,247,0.05); color: rgba(249,247,247,0.25); }
+  .check-text {
+    font-size: 15px;
+    color: rgba(249,247,247,0.75);
+    line-height: 1.55;
+  }
+  .check-item.no .check-text { color: rgba(249, 247, 247, 0.499); }
+
+  /* ── SPEAKER ─────────────────────────────────────────────────────── */
+  .speaker-bg {
+    background: linear-gradient(135deg, #1E2A44 0%, #1A2238 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .speaker-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 72px;
+    align-items: start;
+  }
+  .speaker-card {
+    position: relative;
+  }
+  .speaker-avatar {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #2A3454, #1A2238);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    color: var(--champagne);
+    opacity: 0.5;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .speaker-avatar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 30%, rgba(219,163,154,0.12), transparent 60%);
+  }
+  .speaker-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--champagne);
+    opacity: 0.5;
+    z-index: 1;
+  }
+  .speaker-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--pearl);
+    font-weight: 500;
+  }
+  .speaker-role {
+    font-size: 13px;
+    color: var(--champagne);
+    opacity: 0.75;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .speaker-certs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+  .cert-badge {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: var(--champagne-dim);
+    color: var(--champagne);
+    border: 1px solid rgba(219,163,154,0.2);
+  }
+  .speaker-bio {}
+  .speaker-bio .eyebrow { margin-bottom: 20px; display: block; }
+  .speaker-bio h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 400;
+    color: var(--pearl);
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+  .speaker-bio h2 em { font-style: italic; color: var(--champagne); }
+  .speaker-bio p {
+    font-size: 16px;
+    color: rgba(249,247,247,0.6);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+  .speaker-bio p:last-child { margin-bottom: 0; }
+  .speaker-stat-row {
+    display: flex;
+    gap: 40px;
+    margin-top: 36px;
+    padding-top: 36px;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .speaker-stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--champagne);
+    line-height: 1;
+    display: block;
+  }
+  .speaker-stat-label {
+    font-size: 12px;
+    color: rgba(249,247,247,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ── TOOLS ──────────────────────────────────────────────────────── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .tool-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 28px 24px;
+    text-align: center;
+    background: rgba(255,255,255,0.02);
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .tool-card:hover { border-color: var(--champagne); background: var(--champagne-dim); }
+  .tool-card .tool-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .tool-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--pearl);
+    margin-bottom: 6px;
+  }
+  .tool-card p { font-size: 13px; color: rgba(249,247,247,0.45); line-height: 1.5; }
+  .tool-free {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5FBCA2;
+    background: rgba(95,188,162,0.1);
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+
+  /* ── CTA / CONTACT ──────────────────────────────────────────────── */
+  .cta-section {
+    background: linear-gradient(160deg, #202840 0%, #1A2238 100%);
+    border-top: 1px solid var(--border);
+    padding: 100px 0;
+  }
+  .cta-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400;
+    color: var(--pearl);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .cta-inner h2 em { font-style: italic; color: var(--champagne); }
+  .cta-inner p {
+    font-size: 17px;
+    color: rgba(249,247,247,0.45);
+    margin-bottom: 52px;
+    line-height: 1.7;
+  }
+  .contact-cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 28px;
+    text-decoration: none;
+    background: rgba(255,255,255,0.03);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    min-width: 260px;
+  }
+  .contact-card:hover {
+    border-color: var(--champagne);
+    background: var(--champagne-dim);
+    transform: translateY(-2px);
+  }
+  .contact-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .icon-wa { background: rgba(37,211,102,0.12); }
+  .icon-mail { background: var(--champagne-dim); }
+  .contact-card-text { text-align: left; }
+  .contact-card-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--champagne);
+    opacity: 0.7;
+    display: block;
+    margin-bottom: 3px;
+  }
+  .contact-card-value {
+    font-size: 15px;
+    color: var(--pearl);
+    font-weight: 500;
+    display: block;
+  }
+  .contact-card-sub {
+    font-size: 12px;
+    color: rgba(249,247,247,0.4);
+    margin-top: 1px;
+    display: block;
+  }
+  .cta-note {
+    font-size: 13px;
+    color: rgba(249,247,247,0.3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FOOTER ─────────────────────────────────────────────────────── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px;
+    text-align: center;
+  }
+  footer p {
+    font-size: 13px;
+    color: rgba(249,247,247,0.25);
+    letter-spacing: 0.04em;
+  }
+  footer span { color: var(--champagne); opacity: 0.6; }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .tension-grid { grid-template-columns: 1fr; gap: 40px; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .for-whom-grid { grid-template-columns: 1fr; }
+    .speaker-grid { grid-template-columns: 1fr; gap: 40px; }
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-cards { flex-direction: column; align-items: stretch; }
+    .contact-card { min-width: unset; }
+    .hero-meta { flex-direction: column; }
+    .hero-meta-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .hero-meta-item:last-child { border-bottom: none; }
+    .nav-inner { padding: 16px 20px; }
+    section { padding: 72px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Lumia<span>Data</span></a>
+    <a href="#registro" class="nav-cta">Reservar lugar</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="line"></div>
+        <span class="eyebrow">Taller ejecutivo · Edición privada</span>
+        <div class="line"></div>
+      </div>
+
+      <h1 class="hero-title">
+        La ventaja<br>que pocos<br><em>tienen.</em>
+      </h1>
+      <p class="hero-subtitle">El asesor secreto de IA que nadie sabe que usas.</p>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Fecha</span>
+          <div class="hero-meta-value">24 de Julio</div>
+          <div class="hero-meta-sub">10:00 am — 2:00 pm</div>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Lugar</span>
+          <div class="hero-meta-value">Polanco</div>
+          <div class="hero-meta-sub">Ciudad de México</div>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Grupo</span>
+          <div class="hero-meta-value">Máx. 12</div>
+          <div class="hero-meta-sub">personas</div>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">Inversión</span>
+          <div class="hero-meta-value">$2,500</div>
+          <div class="hero-meta-sub">MXN · todo incluido</div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#registro" class="btn-primary">Quiero mi lugar →</a>
+        <a href="#programa" class="btn-ghost">Ver programa</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TENSION -->
+<section class="tension">
+  <div class="container">
+    <div class="tension-grid">
+      <div class="tension-quote">
+        "Tu equipo ya la usa.<br>Tu competencia, también.<br><em>¿Y tú?</em>"
+      </div>
+      <div class="tension-body">
+        <p>Tienes décadas de experiencia tomando decisiones que otros no podrían tomar. Has construido equipos, dirigido empresas, negociado lo que otros ni se atreven a intentar.</p>
+        <p>Y sin embargo, hay herramientas que <strong>sabes que necesitas</strong> — y que no dominas tú directamente. No por falta de inteligencia. Por falta de tiempo, de contexto, y porque ningún formato convencional está diseñado para alguien como tú.</p>
+        <p>Este taller existe para eso. <strong>Sin teoría. Sin condescendencia. Con resultados el mismo día.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section id="programa">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Lo que dominarás</span>
+      <h2>Sales con esto<br>el mismo día.</h2>
+      <p>Cada ejercicio usa situaciones reales de tu vida o negocio. Nada teórico, todo aplicable desde el lunes.</p>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-icon">🎙️</div>
+        <h3>Nunca más pierdas lo que se dijo en una junta</h3>
+        <p>Grabación, transcripción y minuta automática con action items. Sin depender de nadie para tener el resumen.</p>
+        <span class="outcome-tool">Fathom</span>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">📊</div>
+        <h3>Presentaciones que impresionan — sin diseñador</h3>
+        <p>Decks ejecutivos listos para mostrar en menos de 10 minutos. Sin asistente, sin esperar a nadie.</p>
+        <span class="outcome-tool">Gamma</span>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">✉️</div>
+        <h3>Comunica con autoridad</h3>
+        <p>Emails difíciles, cartas formales y comunicados redactados con tu voz y tu tono. En segundos.</p>
+        <span class="outcome-tool">ChatGPT · Claude</span>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-icon">🧠</div>
+        <h3>Un asesor que no juzga y no tiene agenda</h3>
+        <p>Piensa en voz alta, estructura ideas y llega a tus reuniones más importantes con más claridad que nunca.</p>
+        <span class="outcome-tool">Claude</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="agenda-bg" style="padding:100px 0;">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Programa del día</span>
+      <h2>4 horas.<br>Resultados reales.</h2>
+    </div>
+    <div class="agenda-list">
+
+      <div class="agenda-item">
+        <div class="agenda-time">9:00</div>
+        <div class="agenda-dot-col">
+          <div class="agenda-dot"></div>
+          <div class="agenda-connector"></div>
+        </div>
+        <div class="agenda-body">
+          <span class="agenda-tag tag-ai">ChatGPT · Claude · 40 min</span>
+          <h3>La IA como tu asesor personal de confianza</h3>
+          <p>Qué es y qué no es la IA. ChatGPT vs Claude. Cómo hablarle con precisión. Qué nunca compartir. Tu primer resultado en los primeros 20 minutos.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="agenda-time">9:40</div>
+        <div class="agenda-dot-col">
+          <div class="agenda-dot"></div>
+          <div class="agenda-connector"></div>
+        </div>
+        <div class="agenda-body">
+          <span class="agenda-tag tag-fathom">Fathom · 45 min</span>
+          <h3>Nunca más pierdas lo que se dijo en una junta</h3>
+          <p>Instalación en 5 minutos. Simulación de junta en vivo. Minuta, transcripción y action items automáticos. Cómo compartir sin reenviar la grabación completa.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="agenda-time">10:25</div>
+        <div class="agenda-dot-col">
+          <div class="agenda-dot" style="background: rgba(249,247,247,0.2);"></div>
+          <div class="agenda-connector"></div>
+        </div>
+        <div class="agenda-body">
+          <span class="agenda-tag tag-break">Receso · 20 min</span>
+          <h3 style="color: rgba(249,247,247,0.4); font-size:16px;">Pausa</h3>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="agenda-time">10:45</div>
+        <div class="agenda-dot-col">
+          <div class="agenda-dot"></div>
+          <div class="agenda-connector"></div>
+        </div>
+        <div class="agenda-body">
+          <span class="agenda-tag tag-gamma">Gamma · 45 min</span>
+          <h3>Presentaciones que impresionan — sin diseñador</h3>
+          <p>De idea a deck ejecutivo en 8 minutos. Cada participante genera su propia presentación sobre un tema real de su negocio o proyecto.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="agenda-time">11:30</div>
+        <div class="agenda-dot-col">
+          <div class="agenda-dot"></div>
+          <div class="agenda-connector"></div>
+        </div>
+        <div class="agenda-body">
+          <span class="agenda-tag tag-comm">ChatGPT · Claude · 40 min</span>
+          <h3>Comunica con autoridad</h3>
+          <p>Emails imposibles, cartas ejecutivas y comunicados de impacto. Con tu voz, en minutos. Ejercicios con situaciones reales de cada participante.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="agenda-time">12:10</div>
+        <div class="agenda-dot-col">
+          <div class="agenda-dot optional"></div>
+          <div class="agenda-connector"></div>
+        </div>
+        <div class="agenda-body">
+          <span class="agenda-tag tag-opt">Claude · 15 min · Opcional</span>
+          <h3>El asesor secreto: piensa, decide y llega preparado</h3>
+          <p>Prepara tu próxima decisión importante. Anticipa objeciones. Estructura tu postura. Un asesor disponible 24 horas, sin juicio y sin agenda propia.</p>
+        </div>
+      </div>
+
+      <div class="agenda-item">
+        <div class="agenda-time">12:25</div>
+        <div class="agenda-dot-col">
+          <div class="agenda-dot close"></div>
+        </div>
+        <div class="agenda-body">
+          <span class="agenda-tag tag-close">Cierre · 15 min</span>
+          <h3>Tips, atajos y próximos pasos</h3>
+          <p>Los 5 prompts que usarás el 80% del tiempo. Guía PDF incluida. Grupo de seguimiento opcional. La promesa de la semana.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">¿Es para ti?</span>
+      <h2>Este taller<br>no es para todos.</h2>
+      <p>Y eso es exactamente el punto.</p>
+    </div>
+    <div class="for-whom-grid">
+      <div class="for-whom-col">
+        <span class="for-whom-label label-yes">Es para ti si…</span>
+        <div class="check-item">
+          <div class="check-icon yes">✓</div>
+          <div class="check-text">Tienes perfil ejecutivo, C-level, o diriges tu propio negocio</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon yes">✓</div>
+          <div class="check-text">Sabes que la IA existe pero no la usas directamente</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon yes">✓</div>
+          <div class="check-text">Quieres resultados ese mismo día, no teoría</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon yes">✓</div>
+          <div class="check-text">Valoras la confidencialidad y los grupos muy pequeños</div>
+        </div>
+        <div class="check-item">
+          <div class="check-icon yes">✓</div>
+          <div class="check-text">Quieres dejar de depender de otros para tareas que puedes hacer tú mismo</div>
+        </div>
+      </div>
+      <div class="for-whom-col">
+        <span class="for-whom-label label-no">No es para ti si…</span>
+        <div class="check-item no">
+          <div class="check-icon no">✕</div>
+          <div class="check-text">Buscas un curso técnico o de programación</div>
+        </div>
+        <div class="check-item no">
+          <div class="check-icon no">✕</div>
+          <div class="check-text">Ya usas estas herramientas en tu día a día</div>
+        </div>
+        <div class="check-item no">
+          <div class="check-icon no">✕</div>
+          <div class="check-text">Prefieres aprender a tu ritmo, sin práctica en vivo</div>
+        </div>
+        <div class="check-item no">
+          <div class="check-icon no">✕</div>
+          <div class="check-text">Esperas un formato de conferencia magistral</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKER -->
+<section class="speaker-bg" style="padding:100px 0;" id="expositora">
+  <div class="container">
+    <div class="speaker-grid">
+      <div class="speaker-card">
+        <div class="speaker-name">Nydia Chávez</div>
+        <div class="speaker-role">Especialista en IA · Analítica de Datos<br>Transformación Digital</div>
+        <div class="speaker-certs">
+          <span class="cert-badge">IA Certificada</span>
+          <span class="cert-badge">QA Certificada</span>
+          <span class="cert-badge">+15 años</span>
+        </div>
+      </div>
+
+      <div class="speaker-bio">
+        <span class="eyebrow">La expositora</span>
+        <h2>Experiencia real.<br><em>Resultados comprobados.</em></h2>
+        <p>Especialista en Inteligencia Artificial, Analítica de Datos y Transformación Digital, certificada en Inteligencia Artificial y Aseguramiento de la Calidad. Cuenta con más de 15 años de experiencia liderando iniciativas tecnológicas y de mejora continua en sectores como banca, seguros, retail, gobierno, logística y transporte.</p>
+        <p>Ha diseñado e impartido programas de capacitación para profesionales, equipos de trabajo y líderes empresariales, facilitando la comprensión y adopción de tecnologías emergentes con un enfoque práctico y orientado a resultados.</p>
+        <p>Como consultora, acompaña a las organizaciones en la identificación de oportunidades de aplicación de IA, el desarrollo de capacidades internas y la implementación de estrategias que generan valor de negocio a través de los datos y la innovación tecnológica.</p>
+
+        <div class="speaker-stat-row">
+          <div>
+            <span class="speaker-stat-val">15+</span>
+            <span class="speaker-stat-label">Años de experiencia</span>
+          </div>
+          <div>
+            <span class="speaker-stat-val">7</span>
+            <span class="speaker-stat-label">Sectores de industria</span>
+          </div>
+          <div>
+            <span class="speaker-stat-val">2</span>
+            <span class="speaker-stat-label">Certificaciones clave</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Las herramientas del día</span>
+      <h2>Todo gratuito.<br>Todo en tu laptop.</h2>
+      <p>Solo necesitas traer tu laptop o tablet. Las herramientas no tienen costo y las instalaremos juntos si es necesario.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <span class="tool-icon">🎙️</span>
+        <h4>Fathom</h4>
+        <p>Graba, transcribe y genera minutas automáticas de tus juntas.</p>
+        <span class="tool-free">Gratis</span>
+      </div>
+      <div class="tool-card">
+        <span class="tool-icon">📊</span>
+        <h4>Gamma</h4>
+        <p>Crea presentaciones ejecutivas desde un prompt en minutos.</p>
+        <span class="tool-free">Gratis</span>
+      </div>
+      <div class="tool-card">
+        <span class="tool-icon">💬</span>
+        <h4>ChatGPT</h4>
+        <p>Redacta, resume y comunica con autoridad desde cualquier dispositivo.</p>
+        <span class="tool-free">Gratis</span>
+      </div>
+      <div class="tool-card">
+        <span class="tool-icon">✨</span>
+        <h4>Claude</h4>
+        <p>Tu asesor privado para estructurar ideas y tomar mejores decisiones.</p>
+        <span class="tool-free">Gratis</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / REGISTRO -->
+<section class="cta-section" id="registro">
+  <div class="cta-inner">
+    <span class="eyebrow" style="display:block; margin-bottom:20px;">Registro e informes</span>
+    <h2>Tu lugar<br><em>te está esperando.</em></h2>
+    <p>Cupos limitados a 12 personas para garantizar atención personalizada y un ambiente donde puedes practicar sin presión ni juicio.</p>
+
+    <div class="contact-cards">
+      <a href="https://wa.me/5215579893658" target="_blank" class="contact-card">
+        <div class="contact-card-icon icon-wa">💬</div>
+        <div class="contact-card-text">
+          <span class="contact-card-label">WhatsApp</span>
+          <span class="contact-card-value">55 7989 3658</span>
+          <span class="contact-card-sub">Escríbenos directo</span>
+        </div>
+      </a>
+      <a href="mailto:nydia.chavez@lumiadata.consulting" class="contact-card">
+        <div class="contact-card-icon icon-mail">✉️</div>
+        <div class="contact-card-text">
+          <span class="contact-card-label">Correo</span>
+          <span class="contact-card-value">nydia.chavez</span>
+          <span class="contact-card-sub">@lumiadata.consulting</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="cta-note">24 de Julio · 10:00 am – 2:00 pm · Polanco, CDMX · $2,500 MXN</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>LumiaData Consulting</span> · Todos los derechos reservados · <span>nydia.chavez@lumiadata.consulting</span></p>
+</footer>
+
+</body>
+</html>
